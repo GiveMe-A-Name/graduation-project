@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import Home from '@/views/Home.vue';
-import Register from '@/views/Register.vue';
+import Home from '@/views/Home/index.vue';
+import Register from '@/views/Register/index.vue';
 
 const routes: RouteRecordRaw[] = [
   { component: Home, path: '/' },
