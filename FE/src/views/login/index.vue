@@ -21,7 +21,7 @@ const { account, password, handleLogin } = useLogin();
 </script>
 
 <template>
-  <article class="login__contaier">
+  <main class="login__contaier">
     <h1 class="title">Login</h1>
     <aside>
       <img
@@ -37,7 +37,7 @@ const { account, password, handleLogin } = useLogin();
       />
       <div class="login-btn" @click="handleLogin">Next</div>
     </aside>
-  </article>
+  </main>
 </template>
 
 <style scoped lang="scss">
