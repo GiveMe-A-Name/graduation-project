@@ -31,31 +31,5 @@ const changeActiveIndex = (index: number) => {
 </template>
 
 <style scoped lang="scss">
-.nav__container {
-  position: fixed;
-  display: flex;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 55px;
-  justify-content: space-around;
-  .link {
-    font-size: 10px;
-    text-decoration: none;
-    color: gray;
-    text-align: center;
-    .icon {
-      font-family: 'iconfont';
-      display: inline-block;
-      font-size: 30px;
-    }
-    .content {
-      font-weight: 600;
-      margin: 5px 0;
-    }
-  }
-  .link__active {
-    color: #000;
-  }
-}
+@import './index.scss';
 </style>
