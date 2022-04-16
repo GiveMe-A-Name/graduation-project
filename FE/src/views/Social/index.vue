@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CommunityDisplayCard from './CommunityDisplayCard.vue';
+import SocialDisplayCard from './SocialDisplayCard.vue';
 const navList = reactive([
   { content: '热门', name: 'hot' },
   { content: '表白墙' },
@@ -14,7 +14,7 @@ const changeNavActive = (index: number) => {
 </script>
 
 <template>
-  <section class="community__container">
+  <section class="social__container">
     <nav>
       <li
         v-for="({ content }, index) in navList"
@@ -26,16 +26,16 @@ const changeNavActive = (index: number) => {
       </li>
     </nav>
     <div class="display__wrapper">
-      <CommunityDisplayCard />
-      <CommunityDisplayCard />
-      <CommunityDisplayCard />
-      <CommunityDisplayCard />
+      <SocialDisplayCard />
+      <SocialDisplayCard />
+      <SocialDisplayCard />
+      <SocialDisplayCard />
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-.community__container {
+.social__container {
   font-size: 20px;
   > nav {
     justify-content: space-between;
