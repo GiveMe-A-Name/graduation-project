@@ -28,13 +28,13 @@ const news: News[] = reactive([
 
 <template>
   <section class="news__container">
-    <div
-      v-for="{ title, viewCount, imageUrl } in news"
-      :key="title"
-      class="news__wrapper"
-    >
+    <div class="news__wrapper">
       <h3 class="title">校内新闻</h3>
-      <div class="news__card">
+      <div
+        class="news__card"
+        v-for="{ title, viewCount, imageUrl } in news"
+        :key="title"
+      >
         <div class="content">
           <p class="title">{{ title }}</p>
           <p class="view">{{ viewCount }}k 阅读量</p>
@@ -68,6 +68,7 @@ const news: News[] = reactive([
       > .content {
         width: 70%;
         padding: 0.13rem;
+        padding-left: 0;
         .title {
           font-size: 0.18rem;
         }
