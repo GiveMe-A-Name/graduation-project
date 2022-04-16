@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import UserInfo from './UserInfo.vue';
-import Portal from './Portal.vue';
-import News from './News.vue';
+import HomeUserInfo from './HomeUserInfo.vue';
+import HomePortal from './HomePortal.vue';
+import HomeNews from './HomeNews.vue';
 </script>
 
 <template>
   <article class="home__container">
-    <UserInfo />
-    <Portal />
-    <News />
+    <HomeUserInfo />
+    <HomePortal />
+    <HomeNews />
   </article>
 </template>
 
