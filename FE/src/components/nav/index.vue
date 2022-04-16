@@ -6,7 +6,7 @@ interface Navigation {
 }
 const navigations: Navigation[] = [
   { icon: '&#xe696;', content: '首页', path: '/' },
-  { icon: '&#xe600;', content: '校内发现', path: '/community' },
+  { icon: '&#xe600;', content: '校内发现', path: '/social' },
   { icon: '&#xe78b;', content: '我的', path: '/myself' },
 ];
 const activeIndex = ref(0);

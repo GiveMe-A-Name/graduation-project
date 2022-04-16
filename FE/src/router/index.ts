@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Main from '@/views/Main.vue';
 import Login from '@/views/Login/index.vue';
 import Home from '@/views/Home/index.vue';
-import Community from '@/views/Community/index.vue';
+import Social from '@/views/Social/index.vue';
 import Myself from '@/views/Myself/index.vue';
 
 const routes: RouteRecordRaw[] = [
@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     children: [
       { path: '', component: Home },
-      { path: '/community', component: Community },
+      { path: '/social', component: Social },
       { path: '/myself', component: Myself },
     ],
   },
