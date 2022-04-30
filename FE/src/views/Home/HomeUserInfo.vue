@@ -3,7 +3,7 @@
 <template>
   <section class="user__container">
     <img
-      src="https://s3-alpha-sig.figma.com/img/0845/f26e/ba1d8547c2f8fbd104375e30cdb2ee85?Expires=1650240000&Signature=XE72T~18MygmbURuJdBgtL23lJ6Ge7T9RT~ill1ig3tEiMqSApgBLRJmQelXtjLyUAebcFbyLaPdHPdkn8sWA23ArpFVR0aXHU76AheechOuLxB0hPbEuJRol9RerFvpSnHppgKXnkSdcyyEBtE4NKlgGqz6bNmuVudcdvTMpQBs3qJPng9axZ6StT6F6-5AsTCKzp-AL0D0lNSgQdOkq3UhMxlFN5RUj9RYfjhNPEBKDEJ0cqictXehkIHED2LXbCVBtImvcavjnl0IdZ-bYybR9KKZZ6-2YmZUPJkA0fcVIvt35DJMIx-lTt7y152iPyUQWgumt2DsWHXZV1xNHQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+      src="https://tse1-mm.cn.bing.net/th/id/R-C.e2a66a0597cacc3f27cfcfffe43a9236?rik=GFLh2RwyBUYqpw&riu=http%3a%2f%2fscimg.jianbihuadq.com%2f202012%2f20201229210432113.jpg&ehk=KfEMTPscAHLtffcXRF4CPE2%2b9kWjx47cCeoTNhmv2K0%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
       class="head_image"
     />
     <div class="content">
