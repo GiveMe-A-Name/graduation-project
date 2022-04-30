@@ -6,10 +6,14 @@ import Social from '@/views/Social/index.vue';
 import Myself from '@/views/Myself/index.vue';
 import SocialDetail from '@/views/SocialDetail/index.vue';
 import SocialPublish from '@/views/SocialPublish/index.vue';
+import IDCard from '@/views/IDCard/index.vue';
+import HealthReport from '@/views/HealthReport/index.vue';
 
 const routes: RouteRecordRaw[] = [
   { component: SocialDetail, path: '/social/:id' },
   { component: SocialPublish, path: '/social/publish' },
+  { component: IDCard, path: '/id_card' },
+  { component: HealthReport, path: '/health_report' },
   {
     component: Main,
     path: '/',
