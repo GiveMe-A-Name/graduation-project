@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Comeback from '@/components/Comeback.vue';
 import useReport from './useReport';
-import Input from './Input.vue';
-import Select from './Select.vue';
+import ReportInput from './ReportInput.vue';
+import ReportSelect from './ReportSelect.vue';
 
 const {
   name,
@@ -23,21 +23,29 @@ const {
   <main class="health-report__container">
     <Comeback />
     <form>
-      <Input label="姓名" class="input_component" v-model="name" />
-      <Input label="学号/工号" class="input_component" v-model="id" />
-      <Select title="今日体温" :options="temperatures" v-model="temperature" />
-      <Select
+      <ReportInput label="姓名" class="input_component" v-model="name" />
+      <ReportInput label="学号/工号" class="input_component" v-model="id" />
+      <ReportSelect
+        title="今日体温"
+        :options="temperatures"
+        v-model="temperature"
+      />
+      <ReportSelect
         title="居民健康码颜色"
         :options="healthCodeColors"
         v-model="healthCodeColor"
       />
-      <Select
+      <ReportSelect
         title="自己当日所在位置"
         :options="positions"
         v-model="position"
       />
-      <Select title="身体健康状况" :options="healths" v-model="healthStatus" />
-      <Input label="本人电话" class="input_component" v-model="phone" />
+      <ReportSelect
+        title="身体健康状况"
+        :options="healths"
+        v-model="healthStatus"
+      />
+      <ReportInput label="本人电话" class="input_component" v-model="phone" />
     </form>
     <div class="submit_btn">提交信息</div>
   </main>

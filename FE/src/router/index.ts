@@ -8,12 +8,14 @@ import SocialDetail from '@/views/SocialDetail/index.vue';
 import SocialPublish from '@/views/SocialPublish/index.vue';
 import IDCard from '@/views/IDCard/index.vue';
 import HealthReport from '@/views/HealthReport/index.vue';
+import News from '@/views/News/index.vue';
 
 const routes: RouteRecordRaw[] = [
   { component: SocialDetail, path: '/social/:id' },
   { component: SocialPublish, path: '/social/publish' },
   { component: IDCard, path: '/id_card' },
   { component: HealthReport, path: '/health_report' },
+  { component: News, path: '/news/:id' },
   {
     component: Main,
     path: '/',
