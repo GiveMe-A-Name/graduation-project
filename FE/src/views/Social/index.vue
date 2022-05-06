@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import SocialDisplayCard from './SocialDisplayCard.vue';
-const navList = reactive([
-  { content: '热门', name: 'hot' },
-  { content: '表白墙' },
-  { content: '社交' },
-  { content: '学习' },
-  { content: '社团' },
-]);
-const navActiveIndex = ref(0);
-const changeNavActive = (index: number) => {
-  navActiveIndex.value = index;
-};
+import useDisplay from './useDisplay';
+import useNav from './useNav';
+
+const { navList, navActiveIndex, changeNavActive } = useNav();
+const sourceDisplayList = useDisplay();
+const filterDisplayList = computed(() => {
+  return sourceDisplayList.filter((display) => {
+    return display.tag === navList[navActiveIndex.value].tag;
+  });
+});
 </script>
 
 <template>
@@ -26,10 +25,11 @@ const changeNavActive = (index: number) => {
       </li>
     </nav>
     <div class="display__wrapper">
-      <SocialDisplayCard />
-      <SocialDisplayCard />
-      <SocialDisplayCard />
-      <SocialDisplayCard />
+      <SocialDisplayCard
+        v-for="display in filterDisplayList"
+        :key="display.title"
+        :="display"
+      />
     </div>
   </section>
 </template>
