@@ -29,7 +29,7 @@ const news: News[] = reactive([
 <template>
   <section class="news__container">
     <div class="news__wrapper">
-      <h3 class="title">校内新闻</h3>
+      <h3 class="title">校园通告</h3>
       <div
         class="news__card"
         v-for="{ title, viewCount, imageUrl } in news"
