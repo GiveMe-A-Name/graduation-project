@@ -1,8 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter();
+</script>
 
 <template>
   <div class="comeback">
-    <span class="icon">&#xe7eb;</span>
+    <span
+      class="icon"
+      @click="
+        () => {
+          router.back();
+        }
+      "
+      >&#xe7eb;</span
+    >
   </div>
 </template>
 
