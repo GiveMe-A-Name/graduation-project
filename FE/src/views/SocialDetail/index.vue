@@ -31,6 +31,7 @@ import Comeback from '@/components/Comeback.vue';
           src="https://www.keaidian.com/uploads/allimg/190424/24110307_6.jpg"
         />
         <input type="text" placeholder="说点什么吧，万一花了呢" />
+        <div class="submit-btn">发送</div>
       </div>
       <CommentCard class="card" />
       <CommentCard class="card" />
@@ -94,7 +95,14 @@ import Comeback from '@/components/Comeback.vue';
         border-radius: 0.1rem;
         height: 0.2rem;
         margin-left: 0.2rem;
-        width: 100%;
+        width: 65%;
+      }
+      .submit-btn {
+        margin-left: 0.1rem;
+        font-size: 0.14rem;
+        height: 0.28rem;
+        width: 0.4rem;
+        line-height: 0.28rem;
       }
     }
     .card {

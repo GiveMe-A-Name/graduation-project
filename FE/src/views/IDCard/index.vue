@@ -7,7 +7,7 @@ import Comeback from '@/components/Comeback.vue';
     <Comeback />
     <div class="card__wrapper">
       <div class="info">
-        <img src="@/assets/image/IDCard.png" />
+        <img src="@/assets/image/school-card.png" />
         <div class="detail">
           <p class="school">中南林业科技大学</p>
           <p class="id">20184065</p>

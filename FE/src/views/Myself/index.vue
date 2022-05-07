@@ -1,23 +1,5 @@
 <script setup lang="ts">
-interface MyselfCard {
-  iconUrl?: string;
-  text: string;
-  id: string;
-}
-function useMyselfCard() {
-  const myselfCards: MyselfCard[] = reactive([
-    { text: '校园卡', id: 'idCard' },
-    { text: '与我相关', id: 'about' },
-    { text: '设置', id: 'set' },
-  ]);
-  const clickCard = (id: string) => {
-    console.log(`click [${id}]`);
-  };
-  return {
-    myselfCards,
-    clickCard,
-  };
-}
+import useMyselfCard from './useMyselfCard';
 const { myselfCards, clickCard } = useMyselfCard();
 </script>
 
@@ -35,12 +17,12 @@ const { myselfCards, clickCard } = useMyselfCard();
     </div>
     <div class="more">
       <li
-        v-for="{ text, id } in myselfCards"
+        v-for="{ text, id, iconUrl } in myselfCards"
         :key="id"
         class="nav_item"
         @click="clickCard(id)"
       >
-        <img src="@/assets/image/school-card.png" class="head-icon" />
+        <img :src="iconUrl" class="head-icon" />
         <span class="text">{{ text }}</span>
         <span class="icon">&#xe6a3;</span>
       </li>
