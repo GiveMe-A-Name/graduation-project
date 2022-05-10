@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { post } from '@/api/request';
+import { useStore } from 'vuex';
+
+const store = useStore();
 function useLogin() {
   const user = reactive({
     account: '',
@@ -6,9 +10,20 @@ function useLogin() {
   });
 
   const { account, password } = toRefs(user);
-  const handleLogin = () => {
-    console.log(account.value);
-    console.log(password.value);
+  const handleLogin = async () => {
+    const response = await post('/user/login', {
+      data: {
+        id: account.value,
+        password: password.value,
+      },
+    });
+    if (response.errcode === 0) {
+      store.commit('GET_USER', response.data);
+      console.log(response.data);
+      console.log('登录成功');
+    } else {
+      window.alert('登录失败');
+    }
   };
   return {
     account,
