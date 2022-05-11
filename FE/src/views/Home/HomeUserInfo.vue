@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import { useUser } from '@/hooks';
+import { useCard, useUser } from '@/hooks';
+import { staticBaseURL } from '@/api/request';
 
 const user = useUser();
+const card = useCard();
 </script>
 
 <template>
   <section class="user__container">
-    <img
-      src="https://tse1-mm.cn.bing.net/th/id/R-C.e2a66a0597cacc3f27cfcfffe43a9236?rik=GFLh2RwyBUYqpw&riu=http%3a%2f%2fscimg.jianbihuadq.com%2f202012%2f20201229210432113.jpg&ehk=KfEMTPscAHLtffcXRF4CPE2%2b9kWjx47cCeoTNhmv2K0%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
-      class="head_image"
-    />
+    <img :src="`${staticBaseURL}/${user.headImage}`" class="head_image" />
     <div class="content">
       <p class="school">中南林业科技大学</p>
       <p class="user">
@@ -18,7 +17,7 @@ const user = useUser();
       </p>
     </div>
     <div class="account-balance">
-      <p class="price">￥61.3</p>
+      <p class="price">￥{{ card.money }}</p>
       <p class="text">账户余额</p>
     </div>
   </section>

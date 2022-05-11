@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Comeback from '@/components/Comeback.vue';
+import { useCard } from '@/hooks';
+const card = useCard();
 </script>
 
 <template>
@@ -10,10 +12,10 @@ import Comeback from '@/components/Comeback.vue';
         <img src="@/assets/image/school-card.png" />
         <div class="detail">
           <p class="school">中南林业科技大学</p>
-          <p class="id">20184065</p>
+          <p class="id">{{ card.id }}</p>
         </div>
       </div>
-      <p class="money">校园卡余额 ￥61.00</p>
+      <p class="money">校园卡余额 ￥{{ card.money }}</p>
     </div>
   </main>
 </template>

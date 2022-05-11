@@ -1,5 +1,6 @@
 import axios from 'axios';
-const PORT = 3001;
+export const PORT = 3001;
+export const staticBaseURL = `http://localhost:${PORT}`;
 
 export async function post(
   url: string,
