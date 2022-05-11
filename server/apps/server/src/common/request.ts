@@ -6,7 +6,7 @@ export interface SucceeResult {
 
 export function createSuccessResponse(data: any): SucceeResult {
   return {
-    errcode: 200,
+    errcode: 0,
     errmsg: 'ok',
     data,
   };

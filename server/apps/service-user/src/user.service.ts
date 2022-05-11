@@ -13,7 +13,7 @@ export class UserService {
         id: loginDto.id,
       },
     });
-    if (user.password !== loginDto.password) {
+    if (user?.password !== loginDto.password) {
       throw new RpcException({
         errcode: 403,
         errmsg: 'Authentication failed',
@@ -21,6 +21,7 @@ export class UserService {
     }
 
     const data = {
+      id: user.id,
       nickname: user.nickname,
       headImage: user.head_image,
       realname: user.realname,

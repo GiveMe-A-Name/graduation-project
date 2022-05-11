@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { USER_SERVICE } from 'apps/const';
 import { UserModule } from './user.module';
 
 async function bootstrap() {
@@ -8,7 +9,7 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        port: 4000,
+        port: USER_SERVICE.port,
       },
     },
   );
