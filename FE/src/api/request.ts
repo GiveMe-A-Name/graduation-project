@@ -15,6 +15,7 @@ export async function post(
     params: query,
     baseURL: `http://localhost:${PORT}/api`,
   });
+  console.log(response.status);
   if (response.status >= 200 && response.status < 300) {
     return response.data;
   }

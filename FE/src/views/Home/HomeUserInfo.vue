@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useUser } from '@/hooks';
+
+const user = useUser();
+</script>
 
 <template>
   <section class="user__container">
@@ -9,8 +13,8 @@
     <div class="content">
       <p class="school">中南林业科技大学</p>
       <p class="user">
-        <span class="name">谢奇璇</span>
-        <span class="id-card">20184065</span>
+        <span class="name">{{ user.realname }}</span>
+        <span class="id-card">{{ user.id }}</span>
       </p>
     </div>
     <div class="account-balance">

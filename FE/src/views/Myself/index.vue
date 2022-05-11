@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { useUser } from '@/hooks';
 import useMyselfCard from './useMyselfCard';
 const { myselfCards, clickCard } = useMyselfCard();
+const user = useUser();
 </script>
 
 <template>
@@ -11,8 +13,8 @@ const { myselfCards, clickCard } = useMyselfCard();
         class="head-image"
       />
       <div class="detail">
-        <p class="name">认真的名字XXX</p>
-        <p class="id">20184065</p>
+        <p class="name">{{ user.realname }}</p>
+        <p class="id">{{ user.id }}</p>
       </div>
     </div>
     <div class="more">

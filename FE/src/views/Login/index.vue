@@ -18,7 +18,7 @@ function useLogin() {
       },
     });
     if (response.errcode === 0) {
-      store.commit('GET_USER', response.data);
+      store.commit('UPDATE_USER', response.data);
       console.log(response.data);
       console.log('登录成功');
     } else {
