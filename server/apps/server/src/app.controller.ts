@@ -2,7 +2,12 @@ import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { LoginDto } from 'apps/dto/login.dto';
 import { createSuccessResponse } from './common/request';
-import { USER_SERVICE, CARD_SERVICE, HEALTH_REPORT_SERVICE } from 'apps/const';
+import {
+  USER_SERVICE,
+  CARD_SERVICE,
+  HEALTH_REPORT_SERVICE,
+  NEWS_SERVICE,
+} from 'apps/const';
 import { HealthReportDto } from 'apps/dto/healthReport.dto';
 
 @Controller('/api')
@@ -14,6 +19,8 @@ export class AppController {
     private readonly cardClient: ClientProxy,
     @Inject(HEALTH_REPORT_SERVICE.name)
     private readonly healthClient: ClientProxy,
+    @Inject(NEWS_SERVICE.name)
+    private readonly newsClient: ClientProxy,
   ) {}
   @Post('/user/login')
   async login(@Body() loginDto: LoginDto) {
@@ -40,17 +47,17 @@ export class AppController {
   }
 
   @Get('/annunciates')
-  async getAnnuciates() {
-    const data = await this.healthClient
-      .send<string>({ cmd: 'getAnnuciates' }, {})
+  async getnewsList() {
+    const data = await this.newsClient
+      .send<string>({ cmd: 'getnewsList' }, {})
       .toPromise();
     return createSuccessResponse(data);
   }
 
   @Get('/annuciate/:id')
-  async getAnnuciate(@Param('id') id: number) {
-    const data = await this.healthClient
-      .send<string>({ cmd: 'getAnnuciate' }, id)
+  async getNews(@Param('id') id: number) {
+    const data = await this.newsClient
+      .send<string>({ cmd: 'getNews' }, id)
       .toPromise();
     return createSuccessResponse(data);
   }

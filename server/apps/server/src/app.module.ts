@@ -5,7 +5,7 @@ import {
   USER_SERVICE,
   CARD_SERVICE,
   HEALTH_REPORT_SERVICE,
-  ANNUNCIATE_SERVICE,
+  NEWS_SERVICE,
 } from 'apps/const';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
@@ -40,10 +40,10 @@ import { join } from 'path';
     ]),
     ClientsModule.register([
       {
-        name: ANNUNCIATE_SERVICE.name,
+        name: NEWS_SERVICE.name,
         transport: Transport.TCP,
         options: {
-          port: ANNUNCIATE_SERVICE.port,
+          port: NEWS_SERVICE.port,
         },
       },
     ]),

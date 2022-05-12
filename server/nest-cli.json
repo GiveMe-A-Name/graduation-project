@@ -44,13 +44,13 @@
         "tsConfigPath": "apps/service-health-report/tsconfig.app.json"
       }
     },
-    "service-annunciate": {
+    "service-news": {
       "type": "application",
-      "root": "apps/service-annunciate",
+      "root": "apps/service-news",
       "entryFile": "main",
-      "sourceRoot": "apps/service-annunciate/src",
+      "sourceRoot": "apps/service-news/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/service-annunciate/tsconfig.app.json"
+        "tsConfigPath": "apps/service-news/tsconfig.app.json"
       }
     }
   }
