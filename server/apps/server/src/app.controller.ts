@@ -38,4 +38,20 @@ export class AppController {
       .toPromise();
     return createSuccessResponse(data);
   }
+
+  @Get('/annunciates')
+  async getAnnuciates() {
+    const data = await this.healthClient
+      .send<string>({ cmd: 'getAnnuciates' }, {})
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Get('/annuciate/:id')
+  async getAnnuciate(@Param('id') id: number) {
+    const data = await this.healthClient
+      .send<string>({ cmd: 'getAnnuciate' }, id)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
 }

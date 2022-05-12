@@ -1,4 +1,8 @@
-type ServiceName = 'USER_SERVICE' | 'CARD_SERVICE' | 'HEALTH_REPORT_SERVICE';
+type ServiceName =
+  | 'USER_SERVICE'
+  | 'CARD_SERVICE'
+  | 'HEALTH_REPORT_SERVICE'
+  | 'ANNUNCIATE_SERVICe';
 
 type Service = {
   name: ServiceName;
@@ -18,4 +22,9 @@ export const CARD_SERVICE: Service = {
 export const HEALTH_REPORT_SERVICE: Service = {
   name: 'HEALTH_REPORT_SERVICE',
   port: 4002,
+};
+
+export const ANNUNCIATE_SERVICE: Service = {
+  name: 'ANNUNCIATE_SERVICe',
+  port: 4003,
 };

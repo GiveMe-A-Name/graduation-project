@@ -43,6 +43,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/service-health-report/tsconfig.app.json"
       }
+    },
+    "service-annunciate": {
+      "type": "application",
+      "root": "apps/service-annunciate",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-annunciate/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-annunciate/tsconfig.app.json"
+      }
     }
   }
 }
