@@ -16,6 +16,7 @@ const {
   healthStatus,
   healths,
   phone,
+  handleReport,
 } = useReport();
 </script>
 
@@ -47,7 +48,7 @@ const {
       />
       <ReportInput label="本人电话" class="input_component" v-model="phone" />
     </form>
-    <div class="submit_btn">提交信息</div>
+    <div class="submit_btn" @click="handleReport">提交信息</div>
   </main>
 </template>
 

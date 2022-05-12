@@ -1,3 +1,6 @@
+import { post } from '@/api/request';
+import { useStore } from 'vuex';
+
 interface Option {
   text: string;
   value: string;
@@ -14,6 +17,7 @@ interface Report {
 }
 
 export default function useReport() {
+  const user = useStore().state.user;
   const temperatures: Option[] = [
     {
       value: 'normal',
@@ -43,8 +47,8 @@ export default function useReport() {
   ];
 
   const report: Report = reactive({
-    name: '谢奇璇',
-    id: 20184065,
+    name: user.realname || '未知姓名',
+    id: user.id || '未知id',
     temperature: '',
     healthCodeColor: '',
     position: '',
@@ -52,11 +56,30 @@ export default function useReport() {
     phone: '',
   });
 
+  const handleReport = async () => {
+    const data = {
+      studentId: report.id,
+      studentName: report.name,
+      temperature: report.temperature,
+      healthCodeColor: report.healthCodeColor,
+      position: report.position,
+      health: report.healthStatus,
+      phone: report.phone,
+    };
+    const response = await post('/healthReport', {
+      data,
+    });
+    if (response.errcode === 0) {
+      console.log('上报成功');
+    }
+  };
+
   return {
     ...toRefs(report),
     temperatures,
     healthCodeColors,
     positions,
     healths,
+    handleReport,
   };
 }
