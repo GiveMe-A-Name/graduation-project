@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { post } from '@/api/request';
+import router from '@/router';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -19,6 +20,9 @@ function useLogin() {
     });
     if (response.errcode === 0) {
       store.commit('UPDATE_USER', response.data);
+      window.localStorage.setItem('isLogin', 'true');
+      window.localStorage.setItem('user', JSON.stringify(response.data));
+      router.push({ name: 'home' });
       console.log(response.data);
       console.log('登录成功');
     } else {

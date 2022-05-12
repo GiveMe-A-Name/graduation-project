@@ -14,7 +14,7 @@ import NewsList from '@/views/NewsList/index.vue';
 const routes: RouteRecordRaw[] = [
   { component: SocialDetail, path: '/social/:id' },
   { component: SocialPublish, path: '/social/publish' },
-  { component: IDCard, path: '/id_card' },
+  { component: IDCard, name: 'idCard', path: '/id_card' },
   { component: HealthReport, path: '/health_report' },
   { component: News, path: '/news/:id' },
   { component: NewsList, path: '/news' },
@@ -22,16 +22,23 @@ const routes: RouteRecordRaw[] = [
     component: Main,
     path: '/',
     children: [
-      { path: '', component: Home },
+      { path: '', name: 'home', component: Home },
       { path: '/social', component: Social },
       { path: '/myself', component: Myself },
     ],
   },
-  { component: Login, path: '/login' },
+  { component: Login, name: 'Login', path: '/login' },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = window.localStorage.getItem('isLogin');
+  if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' });
+  else next();
+});
+
 export default router;

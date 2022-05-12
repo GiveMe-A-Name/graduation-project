@@ -1,3 +1,4 @@
+import router from '@/router';
 import { getImage } from '@/utils';
 interface MyselfCard {
   iconUrl?: string;
@@ -5,6 +6,7 @@ interface MyselfCard {
   id: string;
 }
 const IMAGE_PATH = 'myself';
+
 export default function useMyselfCard() {
   const myselfCards: MyselfCard[] = reactive([
     {
@@ -24,7 +26,12 @@ export default function useMyselfCard() {
     },
   ]);
   const clickCard = (id: string) => {
-    console.log(`click [${id}]`);
+    switch (id) {
+      case 'idCard': {
+        router.push({ name: 'idCard' });
+        return;
+      }
+    }
   };
   return {
     myselfCards,
