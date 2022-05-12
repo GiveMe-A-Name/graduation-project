@@ -1,6 +1,6 @@
 export class HealthReportDto {
-  readonly id: number;
   readonly studentId: number;
+  readonly studentName: string;
   readonly temperature: string;
   readonly healthCodeColor: string;
   readonly position: string;

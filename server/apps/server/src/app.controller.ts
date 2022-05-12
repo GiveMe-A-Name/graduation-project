@@ -38,7 +38,7 @@ export class AppController {
     return createSuccessResponse(data);
   }
 
-  @Post('/health/report')
+  @Post('/healthReport')
   async healthReport(@Body() reportDto: HealthReportDto) {
     const data = await this.healthClient
       .send<string>({ cmd: 'healthreport' }, reportDto)
@@ -46,15 +46,15 @@ export class AppController {
     return createSuccessResponse(data);
   }
 
-  @Get('/annunciates')
+  @Get('/news')
   async getnewsList() {
     const data = await this.newsClient
-      .send<string>({ cmd: 'getnewsList' }, {})
+      .send<string>({ cmd: 'getNewsList' }, {})
       .toPromise();
     return createSuccessResponse(data);
   }
 
-  @Get('/annuciate/:id')
+  @Get('/news/:id')
   async getNews(@Param('id') id: number) {
     const data = await this.newsClient
       .send<string>({ cmd: 'getNews' }, id)

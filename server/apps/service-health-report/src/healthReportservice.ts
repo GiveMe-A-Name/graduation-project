@@ -11,8 +11,8 @@ export class HealthReportService {
 
   async reportHealth(reportDto: HealthReportDto) {
     await this.healthReportModel.create({
-      id: reportDto.id,
       student_id: reportDto.studentId,
+      student_name: reportDto.studentName,
       temperature: reportDto.temperature,
       health_code_color: reportDto.healthCodeColor,
       health: reportDto.health,

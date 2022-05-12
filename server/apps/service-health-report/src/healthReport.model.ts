@@ -1,7 +1,7 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({
-  tableName: '',
+  tableName: 'health_report',
   updatedAt: false,
 })
 export class HealthReport extends Model<HealthReport> {
@@ -10,6 +10,11 @@ export class HealthReport extends Model<HealthReport> {
     allowNull: false,
   })
   student_id: number;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  student_name: string;
 
   @Column({
     type: DataType.STRING,
