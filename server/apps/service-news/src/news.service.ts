@@ -7,7 +7,15 @@ export class NewsService {
   constructor(@InjectModel(News) private newsModel: typeof News) {}
   async getNewsList() {
     const newsList = await this.newsModel.findAll();
-    return newsList;
+    const result = newsList.map((news) => {
+      return {
+        id: news.id,
+        title: news.title,
+        content: news.content,
+        date: news.createdAt,
+      };
+    });
+    return result;
   }
 
   async getNews(id: number) {
