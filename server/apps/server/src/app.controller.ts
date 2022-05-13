@@ -9,6 +9,7 @@ import {
   NEWS_SERVICE,
 } from 'apps/const';
 import { HealthReportDto } from 'apps/dto/healthReport.dto';
+import { AddNewsDto } from 'apps/dto/addNews.dto';
 
 @Controller('/api')
 export class AppController {
@@ -58,6 +59,15 @@ export class AppController {
   async getNews(@Param('id') id: number) {
     const data = await this.newsClient
       .send<string>({ cmd: 'getNews' }, id)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Post('/addNews')
+  async addNews(@Body() addNewsDto: AddNewsDto) {
+    console.log('xxx', addNewsDto);
+    const data = await this.newsClient
+      .send<string>({ cmd: 'addNews' }, addNewsDto)
       .toPromise();
     return createSuccessResponse(data);
   }

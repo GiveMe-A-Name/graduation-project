@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { AddNewsDto } from 'apps/dto/addNews.dto';
 import { News } from './news.model';
 
 @Injectable()
@@ -25,5 +26,13 @@ export class NewsService {
       },
     });
     return news;
+  }
+
+  async addNews(addNewsDto: AddNewsDto) {
+    await this.newsModel.create({
+      title: addNewsDto.title,
+      content: addNewsDto.content,
+    });
+    return 'success';
   }
 }

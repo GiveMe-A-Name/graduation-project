@@ -24,12 +24,21 @@ export default function useMyselfCard() {
       id: 'set',
       iconUrl: getImage(`${IMAGE_PATH}/icon-setting`),
     },
+    {
+      text: '注销',
+      id: 'logout',
+      iconUrl: getImage(`${IMAGE_PATH}/icon-logout`),
+    },
   ]);
   const clickCard = (id: string) => {
     switch (id) {
       case 'idCard': {
         router.push({ name: 'idCard' });
         return;
+      }
+      case 'logout': {
+        window.localStorage.clear();
+        router.push('/login');
       }
     }
   };
