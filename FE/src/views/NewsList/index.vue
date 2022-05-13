@@ -3,6 +3,7 @@ import { get } from '@/api/request';
 import Comeback from '@/components/Comeback.vue';
 import NewsListCard from './NewsListCard.vue';
 import BaseButton from '@/components/BaseButton.vue';
+import { useUser } from '@/hooks';
 
 interface NewsItem {
   id: string;
@@ -38,6 +39,7 @@ const goto = (id: string) => {
 const gotoPublish = () => {
   router.push('/publish/news');
 };
+const user = useUser();
 </script>
 
 <template>
@@ -51,7 +53,12 @@ const gotoPublish = () => {
         @click="goto(newsItem.id)"
       />
     </div>
-    <BaseButton text="发布新闻" class="publish" @click="gotoPublish" />
+    <BaseButton
+      text="发布新闻"
+      class="publish"
+      @click="gotoPublish"
+      v-if="user.admin"
+    />
   </main>
 </template>
 

@@ -27,6 +27,7 @@ export class UserService {
       headImage: user.head_image,
       realname: user.realname,
       sex: user.sex,
+      admin: user.administrator,
     };
     return data;
   }

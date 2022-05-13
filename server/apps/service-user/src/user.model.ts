@@ -37,4 +37,9 @@ export class User extends Model<User> {
     type: DataType.STRING,
   })
   sex: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+  })
+  administrator: boolean;
 }
