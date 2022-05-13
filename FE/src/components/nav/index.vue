@@ -9,10 +9,28 @@ const navigations: Navigation[] = [
   { icon: '&#xe600;', content: '校内发现', path: '/social' },
   { icon: '&#xe78b;', content: '我的', path: '/myself' },
 ];
+
 const activeIndex = ref(0);
 const changeActiveIndex = (index: number) => {
   activeIndex.value = index;
 };
+
+const route = useRoute();
+function initActiveIndex() {
+  const { path } = route;
+  switch (path) {
+    case '/':
+      activeIndex.value = 0;
+      return;
+    case '/social':
+      activeIndex.value = 1;
+      return;
+    case '/myself':
+      activeIndex.value = 2;
+      return;
+  }
+}
+initActiveIndex();
 </script>
 
 <template>
