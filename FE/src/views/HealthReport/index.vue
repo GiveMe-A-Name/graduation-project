@@ -3,6 +3,10 @@ import Comeback from '@/components/Comeback.vue';
 import useReport from './useReport';
 import ReportInput from './ReportInput.vue';
 import ReportSelect from './ReportSelect.vue';
+import { useShowTips } from '@/hooks';
+import BaseTips from '@/components/BaseTips.vue';
+
+const { show, showTips, message } = useShowTips();
 
 const {
   name,
@@ -17,7 +21,7 @@ const {
   healths,
   phone,
   handleReport,
-} = useReport();
+} = useReport(showTips);
 </script>
 
 <template>
@@ -50,6 +54,7 @@ const {
     </form>
     <div class="submit_btn" @click="handleReport">提交信息</div>
   </main>
+  <BaseTips :message="message" v-if="show" />
 </template>
 
 <style scoped lang="scss">

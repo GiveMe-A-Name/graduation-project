@@ -2,7 +2,10 @@
 import { post } from '@/api/request';
 import router from '@/router';
 import { useStore } from 'vuex';
+import BaseTips from '@/components/BaseTips.vue';
+import { useShowTips } from '@/hooks';
 
+const { show, showTips, message } = useShowTips();
 const store = useStore();
 function useLogin() {
   const user = reactive({
@@ -20,11 +23,12 @@ function useLogin() {
       store.commit('UPDATE_USER', response.data);
       window.localStorage.setItem('isLogin', 'true');
       window.localStorage.setItem('user', JSON.stringify(response.data));
-      router.push({ name: 'home' });
-      console.log(response.data);
-      console.log('登录成功');
+      showTips('登录成功，1秒后跳转');
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
     } else {
-      window.alert('登录失败');
+      showTips('登录失败，请重试');
     }
   };
   return {
@@ -55,6 +59,7 @@ const { account, password, handleLogin } = useLogin();
       <div class="login-btn" @click="handleLogin">Next</div>
     </aside>
   </main>
+  <BaseTips :message="message" v-if="show" />
 </template>
 
 <style scoped lang="scss">

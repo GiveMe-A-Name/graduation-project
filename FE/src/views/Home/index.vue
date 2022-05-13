@@ -3,7 +3,6 @@ import HomeUserInfo from './HomeUserInfo.vue';
 import HomePortal from './HomePortal.vue';
 import { useStore } from 'vuex';
 import { useUser } from '@/hooks';
-
 const user = useUser();
 const store = useStore();
 store.dispatch('GET_CARD', user.value.id);

@@ -6,7 +6,6 @@ export async function post(url: string, data: any) {
   const response = await axios.post(url, data, {
     baseURL: `http://localhost:${PORT}/api`,
   });
-  console.log(response.status);
   if (response.status >= 200 && response.status < 300) {
     return response.data;
   }

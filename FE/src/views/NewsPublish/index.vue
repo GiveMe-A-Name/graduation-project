@@ -2,7 +2,11 @@
 import Comeback from '@/components/Comeback.vue';
 import BaseButton from '@/components/BaseButton.vue';
 import { post } from '@/api/request';
+import { useShowTips } from '@/hooks';
+import BaseTips from '@/components/BaseTips.vue';
 
+const router = useRouter();
+const { show, showTips, message } = useShowTips();
 const news = reactive({
   title: '',
   content: '',
@@ -12,7 +16,10 @@ async function publishNews() {
   const url = '/addNews';
   const response = await post(url, news);
   if (response.errcode === 0) {
-    console.log('发布成功');
+    showTips('发布成功， 1秒后跳转');
+    setTimeout(() => {
+      router.push('/news');
+    }, 1000);
   }
 }
 </script>
@@ -32,6 +39,7 @@ async function publishNews() {
       <BaseButton text="发布" class="publish" @click="publishNews" />
     </article>
   </main>
+  <BaseTips :message="message" v-if="show" />
 </template>
 
 <style scoped lang="scss">

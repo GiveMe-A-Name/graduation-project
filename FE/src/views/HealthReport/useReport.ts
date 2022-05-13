@@ -1,4 +1,5 @@
 import { post } from '@/api/request';
+import router from '@/router';
 import { useStore } from 'vuex';
 
 interface Option {
@@ -16,7 +17,7 @@ interface Report {
   phone: string;
 }
 
-export default function useReport() {
+export default function useReport(showTips: Function) {
   const user = useStore().state.user;
   const temperatures: Option[] = [
     {
@@ -68,7 +69,12 @@ export default function useReport() {
     };
     const response = await post('/healthReport', data);
     if (response.errcode === 0) {
-      console.log('上报成功');
+      showTips('上报成功, 1秒后跳转主页');
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
+    } else {
+      showTips('上报失败，请稍后重试');
     }
   };
 

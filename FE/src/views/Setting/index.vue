@@ -2,13 +2,17 @@
 import Comeback from '@/components/Comeback.vue';
 import BaseButton from '@/components/BaseButton.vue';
 import { post } from '@/api/request';
-import { useUser } from '@/hooks';
+import { useShowTips, useUser } from '@/hooks';
+import BaseTips from '@/components/BaseTips.vue';
+
+const router = useRouter();
+
+const { show, showTips, message } = useShowTips();
 
 const passwords = reactive({
   oldPassword: '',
   newPassword: '',
 });
-
 async function updatePassword() {
   const user = useUser();
   const url = '/user/updatePassword';
@@ -17,9 +21,12 @@ async function updatePassword() {
     ...passwords,
   });
   if (response.errcode === 0) {
-    console.log('修改成功');
+    showTips('修改成功，1秒后跳转首页');
+    setTimeout(() => {
+      router.push('/');
+    }, 1000);
   } else {
-    console.log(response);
+    showTips('修改失败，请稍后重试');
   }
 }
 </script>
@@ -38,6 +45,7 @@ async function updatePassword() {
     </div>
     <BaseButton text="修改密码" class="submit-btn" @click="updatePassword" />
   </main>
+  <BaseTips :message="message" v-if="show" />
 </template>
 
 <style scoped lang="scss">
