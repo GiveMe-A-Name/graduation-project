@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { get } from '@/api/request';
 import { getImage } from '@/utils';
 const router = useRouter();
 interface portalMenuItem {
@@ -28,13 +29,25 @@ const portalMenu: portalMenuItem[] = reactive([
     goto: '/social',
   },
 ]);
+
+const news = reactive({
+  title: '',
+});
+async function getNews() {
+  const url = '/news/1';
+  const response = await get(url);
+  if (response.errcode === 0) {
+    news.title = response.data.title;
+  }
+}
+getNews();
 </script>
 
 <template>
   <section class="portal__container">
     <aside class="notification__wrapper">
       <img src="@/assets/home/notification.png" />
-      <p>关于网络安全知识科普宣传的通知</p>
+      <p>{{ news.title }}</p>
       <div
         class="more"
         @click="
@@ -78,6 +91,12 @@ const portalMenu: portalMenuItem[] = reactive([
     align-items: center;
     justify-content: space-between;
     font-size: 0.1rem;
+    > p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 60%;
+    }
     > img {
       width: 0.2rem;
       height: 0.2rem;

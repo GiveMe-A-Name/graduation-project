@@ -1,18 +1,31 @@
 <script setup lang="ts">
+import { get } from '@/api/request';
 import Comeback from '@/components/Comeback.vue';
-const article = ref(`
-[林科大网讯]
-12月20日下午，“长沙”
-`);
+const news = reactive({
+  title: '',
+  content: '',
+});
+const route = useRoute();
+const { id } = route.params;
+async function getNews() {
+  const url = `/news/${id}`;
+  const response = await get(url);
+  if (response.errcode === 0) {
+    const data = response.data;
+    news.title = data.title;
+    news.content = data.content;
+  }
+}
+getNews();
 </script>
 
 <template>
   <main class="news_container">
     <Comeback />
     <div class="article__wrapper">
-      <h3 class="title">专家共同为长沙体育产业发展</h3>
+      <h3 class="title">{{ news.title }}</h3>
       <div class="split"></div>
-      <v-md-preview :text="article"></v-md-preview>
+      <v-md-preview :text="news.content"></v-md-preview>
     </div>
   </main>
 </template>

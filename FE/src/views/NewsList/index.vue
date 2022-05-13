@@ -1,33 +1,28 @@
 <script setup lang="ts">
+import { get } from '@/api/request';
 import Comeback from '@/components/Comeback.vue';
 import NewsListCard from './NewsListCard.vue';
 
 interface NewsItem {
+  id: string;
   title: string;
   date: string;
   content: string;
 }
+const newsList: NewsItem[] = reactive([]);
+async function getNews() {
+  const url = '/news';
+  const response = await get(url);
+  if (response.errcode === 0) {
+    newsList.push(...response.data);
+  }
+}
+getNews();
 
-const newsList: NewsItem[] = [
-  {
-    title: '专家共同为长沙体育产业发展',
-    date: '04月30日 16:17',
-    content:
-      ' 12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”',
-  },
-  {
-    title: '专家共同为长沙体育产业发展1',
-    date: '04月30日 16:17',
-    content:
-      ' 12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”',
-  },
-  {
-    title: '专家共同为长沙体育产业发展2',
-    date: '04月30日 16:17',
-    content:
-      ' 12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”12月20日下午，“长沙”',
-  },
-];
+const router = useRouter();
+const goto = (id: string) => {
+  router.push(`/news/${id}`);
+};
 </script>
 
 <template>
@@ -38,6 +33,7 @@ const newsList: NewsItem[] = [
         v-for="newsItem in newsList"
         :key="newsItem.title"
         :="newsItem"
+        @click="goto(newsItem.id)"
       />
     </div>
   </main>
