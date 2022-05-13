@@ -36,9 +36,14 @@ export default function useMyselfCard() {
         router.push({ name: 'idCard' });
         return;
       }
+      case 'set': {
+        router.push('/setting');
+        return;
+      }
       case 'logout': {
         window.localStorage.clear();
         router.push('/login');
+        return;
       }
     }
   };

@@ -13,10 +13,8 @@ function useLogin() {
   const { account, password } = toRefs(user);
   const handleLogin = async () => {
     const response = await post('/user/login', {
-      data: {
-        id: account.value,
-        password: password.value,
-      },
+      id: account.value,
+      password: password.value,
     });
     if (response.errcode === 0) {
       store.commit('UPDATE_USER', response.data);

@@ -10,9 +10,7 @@ const news = reactive({
 
 async function publishNews() {
   const url = '/addNews';
-  const response = await post(url, {
-    data: news,
-  });
+  const response = await post(url, news);
   if (response.errcode === 0) {
     console.log('发布成功');
   }

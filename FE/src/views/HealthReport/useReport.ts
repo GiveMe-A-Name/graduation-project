@@ -66,9 +66,7 @@ export default function useReport() {
       health: report.healthStatus,
       phone: report.phone,
     };
-    const response = await post('/healthReport', {
-      data,
-    });
+    const response = await post('/healthReport', data);
     if (response.errcode === 0) {
       console.log('上报成功');
     }

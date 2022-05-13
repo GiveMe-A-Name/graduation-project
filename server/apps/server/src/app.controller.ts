@@ -10,6 +10,7 @@ import {
 } from 'apps/const';
 import { HealthReportDto } from 'apps/dto/healthReport.dto';
 import { AddNewsDto } from 'apps/dto/addNews.dto';
+import { UpdatePasswordDto } from 'apps/dto/updatePassword.dto';
 
 @Controller('/api')
 export class AppController {
@@ -27,6 +28,14 @@ export class AppController {
   async login(@Body() loginDto: LoginDto) {
     const data = await this.userClient
       .send<string>({ cmd: 'login' }, loginDto)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Post('/user/updatePassword')
+  async updateUserPassword(@Body() updateDto: UpdatePasswordDto) {
+    const data = await this.userClient
+      .send<string>({ cmd: 'updatePassword' }, updateDto)
       .toPromise();
     return createSuccessResponse(data);
   }

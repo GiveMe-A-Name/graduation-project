@@ -2,18 +2,8 @@ import axios from 'axios';
 export const PORT = 3001;
 export const staticBaseURL = `http://localhost:${PORT}`;
 
-export async function post(
-  url: string,
-  {
-    data,
-    query,
-  }: {
-    data?: any;
-    query?: any;
-  },
-) {
+export async function post(url: string, data: any) {
   const response = await axios.post(url, data, {
-    params: query,
     baseURL: `http://localhost:${PORT}/api`,
   });
   console.log(response.status);

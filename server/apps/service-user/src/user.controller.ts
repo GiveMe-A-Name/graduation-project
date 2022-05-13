@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { LoginDto } from 'apps/dto/login.dto';
+import { UpdatePasswordDto } from 'apps/dto/updatePassword.dto';
 import { UserService } from './user.service';
 
 @Controller()
@@ -9,5 +10,10 @@ export class UserController {
   @MessagePattern({ cmd: 'login' })
   login(loginDto: LoginDto) {
     return this.userService.login(loginDto);
+  }
+
+  @MessagePattern({ cmd: 'updatePassword' })
+  updateUserPassword(updateDto: UpdatePasswordDto) {
+    return this.userService.updateUserPassword(updateDto);
   }
 }
