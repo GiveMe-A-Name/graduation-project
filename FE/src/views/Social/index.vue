@@ -2,6 +2,7 @@
 import SocialDisplayCard from './SocialDisplayCard.vue';
 import useDisplay from './useDisplay';
 import useNav from './useNav';
+import BaseButton from '@/components/BaseButton.vue';
 
 const { navList, navActiveIndex, changeNavActive } = useNav();
 const sourceDisplayList = useDisplay();
@@ -27,10 +28,16 @@ const filterDisplayList = computed(() => {
     <div class="display__wrapper">
       <SocialDisplayCard
         v-for="display in filterDisplayList"
-        :key="display.title"
+        :key="display.id"
         :="display"
+        @click="() => $router.push(`/social/${display.id}`)"
       />
     </div>
+    <BaseButton
+      text="发布新东西"
+      class="publish"
+      @click="() => $router.push('/social/publish')"
+    />
   </section>
 </template>
 
@@ -54,6 +61,11 @@ const filterDisplayList = computed(() => {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 0.03rem;
+  }
+  .publish {
+    width: 90%;
+    // width: 0.5rem;
+    margin: 0.2rem auto 0.1rem;
   }
 }
 </style>

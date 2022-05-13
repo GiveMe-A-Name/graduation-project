@@ -1,4 +1,5 @@
 export interface Display {
+  id: number;
   imageUrl: string;
   headImageUrl: string;
   title: string;
@@ -10,6 +11,7 @@ export interface Display {
 export default function useDisplay() {
   const displayList: Display[] = reactive([
     {
+      id: 1,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备',
@@ -20,6 +22,7 @@ export default function useDisplay() {
       tag: 'hot',
     },
     {
+      id: 2,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备1',
@@ -30,6 +33,7 @@ export default function useDisplay() {
       tag: 'hot',
     },
     {
+      id: 3,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备2',
