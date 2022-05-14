@@ -3,7 +3,12 @@ import { RpcException } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/sequelize';
 import { LoginDto } from 'apps/dto/login.dto';
 import { UpdatePasswordDto } from 'apps/dto/updatePassword.dto';
+import { Op } from 'sequelize';
 import { User } from './user.model';
+
+export interface UserMap {
+  [id: number]: User;
+}
 
 @Injectable()
 export class UserService {
@@ -56,5 +61,20 @@ export class UserService {
       },
     );
     return 'success';
+  }
+
+  async getUserList(ids: number[]) {
+    const users = await this.userModel.findAll({
+      where: {
+        id: {
+          [Op.in]: ids,
+        },
+      },
+    });
+    const userMap = {};
+    users.forEach((user) => {
+      userMap[user.id] = user;
+    });
+    return userMap;
   }
 }

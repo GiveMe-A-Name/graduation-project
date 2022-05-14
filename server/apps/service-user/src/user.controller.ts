@@ -16,4 +16,9 @@ export class UserController {
   updateUserPassword(updateDto: UpdatePasswordDto) {
     return this.userService.updateUserPassword(updateDto);
   }
+
+  @MessagePattern({ cmd: 'getUserList' })
+  getUserList(ids: number[]) {
+    return this.userService.getUserList(ids);
+  }
 }

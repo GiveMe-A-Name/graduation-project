@@ -7,11 +7,13 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 export class PostComment extends Model<PostComment> {
   @Column({
     type: DataType.NUMBER,
+    allowNull: false,
   })
   post_id: number;
 
   @Column({
     type: DataType.NUMBER,
+    allowNull: false,
   })
   user_id: number;
 

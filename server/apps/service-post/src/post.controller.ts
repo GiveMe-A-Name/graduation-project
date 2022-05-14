@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
+import { AddCommentDto } from 'apps/dto/addComment.dto';
 import { PostService } from './post.service';
 
 @Controller()
@@ -14,5 +15,15 @@ export class PostController {
   @MessagePattern({ cmd: 'getPost' })
   getPost(id: number) {
     return this.postService.getPost(id);
+  }
+
+  @MessagePattern({ cmd: 'getPostComment' })
+  getPostComment(id: number) {
+    return this.postService.getPostComment(id);
+  }
+
+  @MessagePattern({ cmd: 'addPostComment' })
+  addPostComment(postCommentDto: AddCommentDto) {
+    return this.postService.addPostComment(postCommentDto);
   }
 }

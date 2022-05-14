@@ -12,6 +12,7 @@ import {
 import { HealthReportDto } from 'apps/dto/healthReport.dto';
 import { AddNewsDto } from 'apps/dto/addNews.dto';
 import { UpdatePasswordDto } from 'apps/dto/updatePassword.dto';
+import { AddCommentDto } from 'apps/dto/addComment.dto';
 
 @Controller('/api')
 export class AppController {
@@ -95,6 +96,22 @@ export class AppController {
   async getPost(@Param('id') id: number) {
     const data = await this.postClient
       .send<string>({ cmd: 'getPost' }, id)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Get('/posts/:id/comments/')
+  async getPostComment(@Param('id') id: number) {
+    const data = await this.postClient
+      .send<string>({ cmd: 'getPostComment' }, id)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Post('/posts/addComments')
+  async addPostComment(@Body() postComentDto: AddCommentDto) {
+    const data = await this.postClient
+      .send<string>({ cmd: 'addPostComment' }, postComentDto)
       .toPromise();
     return createSuccessResponse(data);
   }
