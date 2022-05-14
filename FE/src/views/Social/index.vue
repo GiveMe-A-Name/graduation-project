@@ -5,7 +5,8 @@ import useNav from './useNav';
 import BaseButton from '@/components/BaseButton.vue';
 
 const { navList, navActiveIndex, changeNavActive } = useNav();
-const sourceDisplayList = useDisplay();
+const { displayList: sourceDisplayList, getPost } = useDisplay();
+getPost();
 const filterDisplayList = computed(() => {
   return sourceDisplayList.filter((display) => {
     return display.tag === navList[navActiveIndex.value].tag;
@@ -30,7 +31,7 @@ const filterDisplayList = computed(() => {
         v-for="display in filterDisplayList"
         :key="display.id"
         :="display"
-        @click="() => $router.push(`/social/${display.id}`)"
+        :goto="() => $router.push(`/social/${display.id}`)"
       />
     </div>
     <BaseButton

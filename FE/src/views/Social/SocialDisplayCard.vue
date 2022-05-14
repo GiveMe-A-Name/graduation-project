@@ -3,8 +3,9 @@ export interface DisplayProps {
   imageUrl: string;
   headImageUrl: string;
   title: string;
-  username: string;
+  nickname: string;
   likeCount: number;
+  goto: () => {};
 }
 
 const props = defineProps<DisplayProps>();
@@ -12,11 +13,11 @@ const props = defineProps<DisplayProps>();
 
 <template>
   <div class="display-card__container">
-    <img :src="props.imageUrl" />
+    <img :src="props.imageUrl" @click="props.goto" />
     <h3 class="title">{{ props.title }}</h3>
     <div class="card-info">
       <img :src="props.headImageUrl" class="head-image" />
-      <span class="username">{{ props.username }}</span>
+      <span class="username">{{ props.nickname }}</span>
       <div class="like">
         <span class="icon">&#xe60f;</span>
         <span class="like_count">{{ props.likeCount }}</span>
@@ -33,7 +34,7 @@ const props = defineProps<DisplayProps>();
   flex-direction: column;
   > img {
     width: 100%;
-    height: 400px;
+    height: 2.3rem;
   }
   > .title {
     margin: 0.07rem 0;

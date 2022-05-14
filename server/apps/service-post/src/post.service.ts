@@ -31,6 +31,7 @@ export class PostService {
         like: post.like_num,
         images: JSON.parse(post.images),
         title: post.title,
+        type: post.type,
       };
     });
 

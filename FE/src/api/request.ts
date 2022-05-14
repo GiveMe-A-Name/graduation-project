@@ -1,7 +1,9 @@
 import axios from 'axios';
 export const PORT = 3001;
 export const staticBaseURL = `http://localhost:${PORT}`;
-
+export function getStaticURL(url: string) {
+  return `${staticBaseURL}${url}`;
+}
 export async function post(url: string, data: any) {
   const response = await axios.post(url, data, {
     baseURL: `http://localhost:${PORT}/api`,
