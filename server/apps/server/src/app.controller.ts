@@ -7,6 +7,7 @@ import {
   CARD_SERVICE,
   HEALTH_REPORT_SERVICE,
   NEWS_SERVICE,
+  POST_SERVICE,
 } from 'apps/const';
 import { HealthReportDto } from 'apps/dto/healthReport.dto';
 import { AddNewsDto } from 'apps/dto/addNews.dto';
@@ -23,6 +24,8 @@ export class AppController {
     private readonly healthClient: ClientProxy,
     @Inject(NEWS_SERVICE.name)
     private readonly newsClient: ClientProxy,
+    @Inject(POST_SERVICE.name)
+    private readonly postClient: ClientProxy,
   ) {}
   @Post('/user/login')
   async login(@Body() loginDto: LoginDto) {
@@ -74,10 +77,28 @@ export class AppController {
 
   @Post('/addNews')
   async addNews(@Body() addNewsDto: AddNewsDto) {
-    console.log('xxx', addNewsDto);
     const data = await this.newsClient
       .send<string>({ cmd: 'addNews' }, addNewsDto)
       .toPromise();
     return createSuccessResponse(data);
   }
+
+  @Get('/posts')
+  async getPosts() {
+    const data = await this.postClient
+      .send<string>({ cmd: 'getPosts' }, {})
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Get('/posts/:id')
+  async getPost(@Param('id') id: number) {
+    const data = await this.postClient
+      .send<string>({ cmd: 'getPost' }, id)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  // @Post('/createPost')
+  // async createPost() {}
 }

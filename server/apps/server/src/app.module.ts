@@ -6,6 +6,7 @@ import {
   CARD_SERVICE,
   HEALTH_REPORT_SERVICE,
   NEWS_SERVICE,
+  POST_SERVICE,
 } from 'apps/const';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
@@ -44,6 +45,15 @@ import { join } from 'path';
         transport: Transport.TCP,
         options: {
           port: NEWS_SERVICE.port,
+        },
+      },
+    ]),
+    ClientsModule.register([
+      {
+        name: POST_SERVICE.name,
+        transport: Transport.TCP,
+        options: {
+          port: POST_SERVICE.port,
         },
       },
     ]),

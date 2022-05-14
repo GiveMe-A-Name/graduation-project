@@ -52,6 +52,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/service-news/tsconfig.app.json"
       }
+    },
+    "service-post": {
+      "type": "application",
+      "root": "apps/service-post",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-post/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-post/tsconfig.app.json"
+      }
     }
   }
 }

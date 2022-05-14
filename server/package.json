@@ -10,7 +10,7 @@
     "build": "nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
-    "start:all": "concurrently --kill-others \"nest start server --watch\" \"nest start service-user --watch\" \"nest start service-card --watch\" \"nest start service-health-report --watch\" \"nest start service-news --watch\"",
+    "start:all": "concurrently --kill-others \"nest start server --watch\" \"nest start service-user --watch\" \"nest start service-card --watch\" \"nest start service-health-report --watch\" \"nest start service-news --watch\" \"nest start service-post --watch\"",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
