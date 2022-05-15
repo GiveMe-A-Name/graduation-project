@@ -1,14 +1,34 @@
 <script setup lang="ts">
+import { post } from '@/api/request';
+import { useUser } from '@/hooks';
+
 export interface PostProps {
+  id: number;
   imageUrl: string;
   headImageUrl: string;
   title: string;
   nickname: string;
   likeCount: number;
+  like: boolean;
   goto: () => {};
+  updateLike: (id: number, like: boolean) => void;
 }
 
 const props = defineProps<PostProps>();
+
+async function updatePostLike() {
+  const user = useUser();
+  const url = '/posts/like';
+  const data = {
+    postId: props.id,
+    userId: user.value.id,
+    like: !props.like,
+  };
+  const response = await post(url, data);
+  if (response.errcode === 0) {
+    props.updateLike(props.id, !props.like);
+  }
+}
 </script>
 
 <template>
@@ -18,8 +38,10 @@ const props = defineProps<PostProps>();
     <div class="card-info">
       <img :src="props.headImageUrl" class="head-image" />
       <span class="username">{{ props.nickname }}</span>
-      <div class="like">
-        <span class="icon">&#xe60f;</span>
+      <div class="like" @click="updatePostLike">
+        <span class="icon" :class="{ 'icon-active': props.like }"
+          >{{ props.like ? '&#xe60f;' : '&#xe8ab;' }}
+        </span>
         <span class="like_count">{{ props.likeCount }}</span>
       </div>
     </div>
@@ -59,11 +81,10 @@ const props = defineProps<PostProps>();
       align-items: center;
       .icon {
         font-family: 'iconfont';
+      }
+      .icon-active {
         color: red;
       }
-      // .icon-active {
-      //   color: red;
-      // }
       .like_count {
         font-size: 0.12rem;
         display: inline-block;

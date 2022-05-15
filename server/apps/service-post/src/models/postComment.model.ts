@@ -18,11 +18,6 @@ export class PostComment extends Model<PostComment> {
   user_id: number;
 
   @Column({
-    type: DataType.BOOLEAN,
-  })
-  like: boolean;
-
-  @Column({
     type: DataType.TEXT,
   })
   comment: string;

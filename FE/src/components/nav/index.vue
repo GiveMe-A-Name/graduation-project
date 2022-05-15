@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { stat } from 'fs';
+import { useStore } from 'vuex';
+
 interface Navigation {
   icon: string;
   content: string;

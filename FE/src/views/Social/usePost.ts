@@ -8,12 +8,13 @@ export interface Post {
   nickname: string;
   likeCount: number;
   tag: string;
+  like: boolean;
 }
 
 export default function usePost() {
   const posts: Post[] = reactive([
     {
-      id: 1,
+      id: 3,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备',
@@ -22,9 +23,10 @@ export default function usePost() {
       nickname: '小杨同学',
       likeCount: 1123,
       tag: 'hot',
+      like: false,
     },
     {
-      id: 2,
+      id: 4,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备1',
@@ -33,9 +35,10 @@ export default function usePost() {
       nickname: '小杨同学',
       likeCount: 1123,
       tag: 'hot',
+      like: false,
     },
     {
-      id: 3,
+      id: 5,
       imageUrl:
         'https://tse2-mm.cn.bing.net/th/id/OIP-C.Jqzlm4QzTzbqLHf6HoTBhAHaEo?w=248&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7',
       title: '大厂暑期实习该如何准备2',
@@ -44,6 +47,7 @@ export default function usePost() {
       nickname: '小杨同学',
       likeCount: 1123,
       tag: 'love',
+      like: false,
     },
   ]);
   async function getPost() {
@@ -58,15 +62,23 @@ export default function usePost() {
             imageUrl: getStaticURL(item.images[0]),
             title: item.title,
             nickname: item.nickname,
-            likeCount: item.like,
+            likeCount: item.likeNum,
             tag: item.type,
+            like: item.like,
           };
         }),
       );
     }
   }
+
+  function updatePostLike(id: number, like: boolean) {
+    const post = posts.find((post) => post.id === id);
+    post && (post.like = like);
+  }
+
   return {
     posts,
     getPost,
+    updatePostLike,
   };
 }

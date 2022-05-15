@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { AddCommentDto } from 'apps/dto/addComment.dto';
+import { LikePostDto } from 'apps/dto/likePost.dto';
 import { PostService } from './post.service';
 
 @Controller()
@@ -25,5 +26,10 @@ export class PostController {
   @MessagePattern({ cmd: 'addPostComment' })
   addPostComment(postCommentDto: AddCommentDto) {
     return this.postService.addPostComment(postCommentDto);
+  }
+
+  @MessagePattern({ cmd: 'updatePostLike' })
+  updatePostLike(likeDto: LikePostDto) {
+    return this.postService.updatePostLike(likeDto);
   }
 }

@@ -5,7 +5,7 @@ import useNav from './useNav';
 import BaseButton from '@/components/BaseButton.vue';
 
 const { navList, navActiveIndex, changeNavActive } = useNav();
-const { posts: sourcePosts, getPost } = usePost();
+const { posts: sourcePosts, getPost, updatePostLike } = usePost();
 getPost();
 const filterPosts = computed(() => {
   return sourcePosts.filter((post) => {
@@ -32,6 +32,7 @@ const filterPosts = computed(() => {
         :key="display.id"
         :="display"
         :goto="() => $router.push(`/social/${display.id}`)"
+        :update-like="updatePostLike"
       />
     </div>
     <BaseButton

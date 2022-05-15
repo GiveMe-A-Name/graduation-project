@@ -13,6 +13,7 @@ import { HealthReportDto } from 'apps/dto/healthReport.dto';
 import { AddNewsDto } from 'apps/dto/addNews.dto';
 import { UpdatePasswordDto } from 'apps/dto/updatePassword.dto';
 import { AddCommentDto } from 'apps/dto/addComment.dto';
+import { LikePostDto } from 'apps/dto/likePost.dto';
 
 @Controller('/api')
 export class AppController {
@@ -112,6 +113,14 @@ export class AppController {
   async addPostComment(@Body() postComentDto: AddCommentDto) {
     const data = await this.postClient
       .send<string>({ cmd: 'addPostComment' }, postComentDto)
+      .toPromise();
+    return createSuccessResponse(data);
+  }
+
+  @Post('/posts/like')
+  async updatePostLike(@Body() likeDto: LikePostDto) {
+    const data = await this.postClient
+      .send<string>({ cmd: 'updatePostLike' }, likeDto)
       .toPromise();
     return createSuccessResponse(data);
   }
