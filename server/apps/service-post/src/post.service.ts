@@ -3,6 +3,7 @@ import { ClientProxy } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/sequelize';
 import { USER_SERVICE } from 'apps/const';
 import { AddCommentDto } from 'apps/dto/addComment.dto';
+import { CreatePostDto } from 'apps/dto/cratePost.dto';
 import { LikePostDto } from 'apps/dto/likePost.dto';
 import { UserMap } from 'apps/service-user/src/user.service';
 import { Post } from './models/post.model';
@@ -116,6 +117,38 @@ export class PostService {
     }
     record.like = likeDto.like;
     await record.save();
+
+    let previousLikeNum = (
+      await this.postModel.findOne({
+        where: {
+          id: likeDto.postId,
+        },
+      })
+    ).like_num;
+    likeDto.like ? (previousLikeNum += 1) : (previousLikeNum -= 1);
+    await this.postModel.update(
+      {
+        like_num: previousLikeNum,
+      },
+      {
+        where: {
+          id: likeDto.postId,
+        },
+      },
+    );
+
+    return 'success';
+  }
+
+  async createPost(createPostDto: CreatePostDto) {
+    const images = ['/th.jpg'];
+    await this.postModel.create({
+      user_id: createPostDto.userId,
+      title: createPostDto.title,
+      content: createPostDto.content,
+      images: JSON.stringify(images),
+      type: createPostDto.type,
+    });
     return 'success';
   }
 }

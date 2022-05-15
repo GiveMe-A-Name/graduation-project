@@ -8,9 +8,15 @@ const { navList, navActiveIndex, changeNavActive } = useNav();
 const { posts: sourcePosts, getPost, updatePostLike } = usePost();
 getPost();
 const filterPosts = computed(() => {
-  return sourcePosts.filter((post) => {
-    return post.tag === navList[navActiveIndex.value].tag;
-  });
+  if (navActiveIndex.value !== 0) {
+    return sourcePosts.filter((post) => {
+      return post.tag === navList[navActiveIndex.value].tag;
+    });
+  } else {
+    return sourcePosts.filter((post) => {
+      return post.likeCount > 100;
+    });
+  }
 });
 </script>
 
