@@ -1,6 +1,39 @@
 <script setup lang="ts">
 import CommentCard from './CommentCard.vue';
 import Comeback from '@/components/Comeback.vue';
+import usePost from './usePost';
+import useComment from './useComment';
+import { useUser } from '@/hooks';
+import { getStaticURL, post as postRequest } from '@/api/request';
+
+const route = useRoute();
+const postId = route.params.id;
+const { post, getPost } = usePost(postId);
+getPost();
+
+const { comments, getComment } = useComment(postId);
+getComment();
+
+const user = useUser();
+const comment = ref('');
+async function sendComment() {
+  const url = '/posts/addComments';
+  const data = {
+    postId,
+    userId: user.value.id,
+    content: comment.value,
+  };
+  const response = await postRequest(url, data);
+  if (response.errcode === 0) {
+    comments.push({
+      headImage: user.value.headImage,
+      nickname: user.value.nickname,
+      content: comment.value,
+      time: new Date().toLocaleDateString(),
+    });
+    comment.value = '';
+  }
+}
 </script>
 
 <template>
@@ -17,24 +50,29 @@ import Comeback from '@/components/Comeback.vue';
       </div>
     </div>
     <div class="detail_text">
-      <h4 class="title">真的，别再去字节面试了</h4>
-      <p>这里全是文字</p>
+      <h4 class="title">{{ post.title }}</h4>
+      <p>{{ post.content }}</p>
       <div class="time">
-        <span class="date">今天</span>
-        <span class="clock">12:43</span>
+        <span class="date">{{ post.createTime }}</span>
       </div>
     </div>
     <div class="comment__container">
-      <h4 class="title">共有123条评论</h4>
+      <h4 class="title">共有{{ comments.length }}条评论</h4>
       <div class="comment-input__container">
-        <img
-          src="https://www.keaidian.com/uploads/allimg/190424/24110307_6.jpg"
+        <img :src="getStaticURL(user.headImage)" />
+        <input
+          v-model="comment"
+          type="text"
+          placeholder="说点什么吧，万一花了呢"
         />
-        <input type="text" placeholder="说点什么吧，万一花了呢" />
-        <div class="submit-btn">发送</div>
+        <div class="submit-btn" @click="sendComment">发送</div>
       </div>
-      <CommentCard class="card" />
-      <CommentCard class="card" />
+      <CommentCard
+        class="card"
+        v-for="(comment, index) in comments"
+        :="comment"
+        :key="index"
+      />
     </div>
   </section>
 </template>

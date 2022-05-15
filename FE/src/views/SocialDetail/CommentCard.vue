@@ -1,15 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { getStaticURL } from '@/api/request';
+const props = defineProps<{
+  headImage: string;
+  nickname: string;
+  content: string;
+  time: string;
+}>();
+</script>
 
 <template>
   <div class="comment__card__wrapper">
-    <img src="https://www.keaidian.com/uploads/allimg/190424/24110307_6.jpg" />
+    <img :src="getStaticURL(props.headImage)" />
     <div class="body">
-      <span class="username">用户昵称xxx</span>
-      <div class="content">这里是评论内容</div>
+      <span class="username">{{ props.nickname }}</span>
+      <div class="content">{{ props.content }}</div>
     </div>
-    <div class="like">
-      <span class="icon">&#xe60f;</span>
-      <span class="like_count">1123</span>
+    <div class="time">
+      <span class="text">{{ props.time }}</span>
     </div>
   </div>
 </template>
@@ -38,15 +45,11 @@
       font-size: 0.15rem;
     }
   }
-  .like {
+  .time {
     font-size: 0.16rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    .icon {
-      font-family: 'iconfont';
-    }
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '@/hooks';
-import { staticBaseURL } from '@/api/request';
+import { getStaticURL } from '@/api/request';
 import useMyselfCard from './useMyselfCard';
 
 const { myselfCards, clickCard } = useMyselfCard();
@@ -10,7 +10,7 @@ const user = useUser();
 <template>
   <article class="myself__container">
     <div class="self-introduction">
-      <img :src="`${staticBaseURL}/${user.headImage}`" class="head-image" />
+      <img :src="getStaticURL(user.headImage)" class="head-image" />
       <div class="detail">
         <p class="name">{{ user.realname }}</p>
         <p class="id">{{ user.id }}</p>
