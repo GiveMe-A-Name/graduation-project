@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import SocialDisplayCard from './SocialDisplayCard.vue';
-import useDisplay from './useDisplay';
+import SocialPostCard from './SocialPostCard.vue';
+import usePost from './usePost';
 import useNav from './useNav';
 import BaseButton from '@/components/BaseButton.vue';
 
 const { navList, navActiveIndex, changeNavActive } = useNav();
-const { displayList: sourceDisplayList, getPost } = useDisplay();
+const { posts: sourcePosts, getPost } = usePost();
 getPost();
-const filterDisplayList = computed(() => {
-  return sourceDisplayList.filter((display) => {
-    return display.tag === navList[navActiveIndex.value].tag;
+const filterPosts = computed(() => {
+  return sourcePosts.filter((post) => {
+    return post.tag === navList[navActiveIndex.value].tag;
   });
 });
 </script>
@@ -26,9 +26,9 @@ const filterDisplayList = computed(() => {
         {{ content }}
       </li>
     </nav>
-    <div class="display__wrapper">
-      <SocialDisplayCard
-        v-for="display in filterDisplayList"
+    <div class="post__wrapper">
+      <SocialPostCard
+        v-for="display in filterPosts"
         :key="display.id"
         :="display"
         :goto="() => $router.push(`/social/${display.id}`)"
@@ -57,7 +57,7 @@ const filterDisplayList = computed(() => {
       color: #bc1f1f;
     }
   }
-  .display__wrapper {
+  .post__wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

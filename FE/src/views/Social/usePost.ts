@@ -1,6 +1,6 @@
 import { get, getStaticURL } from '@/api/request';
 
-export interface Display {
+export interface Post {
   id: number;
   imageUrl: string;
   headImageUrl: string;
@@ -10,8 +10,8 @@ export interface Display {
   tag: string;
 }
 
-export default function useDisplay() {
-  const displayList: Display[] = reactive([
+export default function usePost() {
+  const posts: Post[] = reactive([
     {
       id: 1,
       imageUrl:
@@ -50,7 +50,7 @@ export default function useDisplay() {
     const url = '/posts/';
     const response = await get(url);
     if (response.errcode === 0) {
-      displayList.push(
+      posts.push(
         ...response.data.map((item: any) => {
           return {
             id: item.id,
@@ -66,7 +66,7 @@ export default function useDisplay() {
     }
   }
   return {
-    displayList,
+    posts,
     getPost,
   };
 }

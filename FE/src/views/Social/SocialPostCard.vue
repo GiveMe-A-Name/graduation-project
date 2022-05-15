@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export interface DisplayProps {
+export interface PostProps {
   imageUrl: string;
   headImageUrl: string;
   title: string;
@@ -8,11 +8,11 @@ export interface DisplayProps {
   goto: () => {};
 }
 
-const props = defineProps<DisplayProps>();
+const props = defineProps<PostProps>();
 </script>
 
 <template>
-  <div class="display-card__container">
+  <div class="post-card__container">
     <img :src="props.imageUrl" @click="props.goto" />
     <h3 class="title">{{ props.title }}</h3>
     <div class="card-info">
@@ -27,7 +27,7 @@ const props = defineProps<DisplayProps>();
 </template>
 
 <style scoped lang="scss">
-.display-card__container {
+.post-card__container {
   width: 183px;
   height: 245px;
   display: flex;
